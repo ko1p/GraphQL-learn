@@ -1,2 +1,2 @@
 # GraphQL-learn
-Изучаю GraphQL и Apollo
+Тестовый репозиторий для изученния технологии GraphQL, Apollo.
