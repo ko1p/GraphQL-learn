@@ -1,6 +1,6 @@
 const graphql = require('graphql');
 
-const { GraphQLObjectType, GraphQLString, GraphQLSchema, GraphQLID, GraphQLInt, GraphQLList, GraphQLNonNull} = graphql;
+const { GraphQLObjectType, GraphQLString, GraphQLSchema, GraphQLID, GraphQLInt, GraphQLList, GraphQLNonNull, GraphQLBoolean} = graphql;
 const Movies = require('../models/movie');
 const Directors = require('../models/director');
 
@@ -10,6 +10,8 @@ const MovieType = new GraphQLObjectType({
       id: { type: GraphQLID },
       name: { type: GraphQLString },
       genre: { type: GraphQLString },
+      rate: { type: GraphQLInt },
+      watched: { type: new GraphQLNonNull(GraphQLBoolean) },
       director: {
           type: DirectorType,
           resolve(parent, args) {
@@ -56,13 +58,17 @@ const MovieType = new GraphQLObjectType({
         args: {
           name: {type: new GraphQLNonNull(GraphQLString)},
           genre: {type: new GraphQLNonNull(GraphQLString)},
-          directorId: {type: GraphQLID}
+          directorId: {type: GraphQLID},
+          rate: { type: GraphQLInt },
+          watched: { type: new GraphQLNonNull(GraphQLBoolean) },
         }, 
         resolve(parent, args) {
           const movie = new Movies({
             name: args.name,
             genre: args.genre,
-            directorId: args.directorId
+            directorId: args.directorId,
+            watched: args.watched,
+            rate: args.rate,
           })
           return movie.save()
         }
@@ -109,7 +115,9 @@ const MovieType = new GraphQLObjectType({
           id: {type: GraphQLID},
           name: {type: new GraphQLNonNull(GraphQLString)},
           genre: {type: new GraphQLNonNull(GraphQLString)},
-          directorId: {type: GraphQLID}
+          directorId: {type: GraphQLID},
+          rate: { type: GraphQLInt },
+          watched: { type: new GraphQLNonNull(GraphQLBoolean) },
         }, 
         resolve(parent, args) {
           return Movies.findByIdAndUpdate(
@@ -117,7 +125,9 @@ const MovieType = new GraphQLObjectType({
             { $set: {
               name: args.name,
               genre: args.genre,
-              directorId: args.directorId
+              directorId: args.directorId,
+              watched: args.watched,
+              rate: args.rate,
             }},
             {new: true},
           )
