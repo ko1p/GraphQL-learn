@@ -7,3 +7,11 @@ export const addDirectorMutatuion = gql`
         }
     }
 `;
+
+export const updateDirectorMutatuion = gql`
+    mutation updateDirector($id: ID, $name: String!, $age: Int!) {
+        updateDirector(id: $id, name: $name, age: $age) {
+            name
+        }
+    }
+`;
