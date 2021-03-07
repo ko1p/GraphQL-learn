@@ -2,9 +2,9 @@
   "name": "graphql-learn",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server/app.js",
   "scripts": {
-    "dev": "nodemon server/app.js"
+    "server": "nodemon server/server/app.js"
   },
   "author": "",
   "license": "ISC",

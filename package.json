@@ -1,0 +1,21 @@
+{
+  "name": "graphql-learn",
+  "version": "1.0.0",
+  "description": "Тестовый репозиторий для изученния технологии GraphQL, Apollo.",
+  "main": "index.js",
+  "scripts": {
+    "install": "cd server && npm install && cd .. && cd application && yarn install && cd ..",
+    "server": "cd server && nodemon app.js",
+    "app": "npm --prefix ./application/ run start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ko1p/GraphQL-learn.git"
+  },
+  "author": "Anton Belko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ko1p/GraphQL-learn/issues"
+  },
+  "homepage": "https://github.com/ko1p/GraphQL-learn#readme"
+}
